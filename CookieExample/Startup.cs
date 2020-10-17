@@ -24,7 +24,11 @@ namespace CookieExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.Configure<CookiePolicyOptions>(option=> 
+            {
+                option.CheckConsentNeeded = context => true;
+                option.MinimumSameSitePolicy = SameSiteMode.None;
+            });
             services.AddControllersWithViews();
         }
 
